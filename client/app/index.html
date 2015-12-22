@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Vaadin Elementary School</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    }
+  </style>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="bower_components/vaadin-grid/vaadin-grid.html">
+</head>
+
+<body>
+  <h1>Vaadin Elementary School Signups</h1>
+  <vaadin-grid>
+    <table>
+      <colgroup>
+        <col name="user.name.first" />
+        <col name="user.name.last" />
+        <col name="user.email" />
+        <col name="user.phone" />
+      </colgroup>
+    </table>
+  </vaadin-grid>
+  <script type="text/javascript">
+    window.addEventListener('WebComponentsReady', function() {
+      var grid = document.querySelector('vaadin-grid');
+
+      var datasource = function(params, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              var json = JSON.parse(xhr.responseText);
+              callback(json);
+            }
+          }
+        };
+        xhr.open('GET', 'http://localhost:8080/signups?index=' + params.index + '&count=' + params.count, true);
+        xhr.send();
+      };
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+            grid.size = json.count;
+            grid.items = datasource;
+          }
+        }
+      };
+      xhr.open('GET', 'http://localhost:8080/signups/count', true);
+      xhr.send();
+
+    });
+  </script>
+</body>
+
+</html>
