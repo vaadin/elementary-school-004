@@ -1,6 +1,6 @@
 # Vaadin Elementary School 004
 
-Source code for [Vaadin Elementary School 004](https://www.youtube.com/watch?v=d9DPZ58JSlA), showing you how to use a REST API to lazy load items to a `<vaadin-grid>` in order to handle large data sets.
+Source code for [Vaadin Elementary School 004](https://www.youtube.com/watch?v=gs5w-coSI40), showing you how to use a REST API to lazy load items to a `<vaadin-grid>` in order to handle large data sets.
 
 ## Running
 
