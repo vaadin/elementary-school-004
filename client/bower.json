@@ -16,5 +16,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "vaadin-grid": "^1.0.0"
+  }
 }
